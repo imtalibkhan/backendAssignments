@@ -1,0 +1,220 @@
+> use assignment
+switched to db assignment
+> db.users.insert({firstname:"abutalib",lastName:"khan",email:"t@555",gender:"male",ipAddres:123,age:22})
+WriteResult({ "nInserted" : 1 })
+>  db.users.insertMany([{first_name:"abc",l_name:"def"},{first_name:"jhi",last_name:"jkl"},{first_name:"lmn",last_name:"pqr"},{first_name:"rst",last_name:"uv"},{first_name:"wx",last_name:"yz"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("61b02ac2e37280d1d2ab0c26"),
+                ObjectId("61b02ac2e37280d1d2ab0c27"),
+                ObjectId("61b02ac2e37280d1d2ab0c28"),
+                ObjectId("61b02ac2e37280d1d2ab0c29"),
+                ObjectId("61b02ac2e37280d1d2ab0c2a")
+        ]
+}
+===========================================================================
+>  db.users.find().pretty()
+{
+        "_id" : ObjectId("61b029fde37280d1d2ab0c25"),
+        "firstname" : "abutalib",
+        "lastName" : "khan",
+        "email" : "t@555",
+        "gender" : "male",
+        "ipAddres" : 123,
+        "age" : 22
+}
+{
+        "_id" : ObjectId("61b02ac2e37280d1d2ab0c26"),
+        "first_name" : "abc",
+        "l_name" : "def"
+}
+{
+        "_id" : ObjectId("61b02ac2e37280d1d2ab0c27"),
+        "first_name" : "jhi",
+        "last_name" : "jkl"
+}
+{
+        "_id" : ObjectId("61b02ac2e37280d1d2ab0c28"),
+        "first_name" : "lmn",
+        "last_name" : "pqr"
+}
+{
+        "_id" : ObjectId("61b02ac2e37280d1d2ab0c29"),
+        "first_name" : "rst",
+        "last_name" : "uv"
+}
+{
+        "_id" : ObjectId("61b02ac2e37280d1d2ab0c2a"),
+        "first_name" : "wx",
+        "last_name" : "yz"
+}
+>
+===============================================================
+> db.users.findOne()
+{
+        "_id" : ObjectId("61b029fde37280d1d2ab0c25"),
+        "firstname" : "abutalib",
+        "lastName" : "khan",
+        "email" : "t@555",
+        "gender" : "male",
+        "ipAddres" : 123,
+        "age" : 22
+}
+>
+
+
+ db.user.findOne()
+null
+> db.users.findOne()
+{
+        "_id" : ObjectId("61b029fde37280d1d2ab0c25"),
+        "firstname" : "abutalib",
+        "lastName" : "khan",
+        "email" : "t@555",
+        "gender" : "male",
+        "ipAddres" : 123,
+        "age" : 22
+}
+> db.users.update({email:"t@555"},{lastName:"khan"})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.findOne()
+{ "_id" : ObjectId("61b029fde37280d1d2ab0c25"), "lastName" : "khan" }
+>
+
+
+=========================================
+> db.users.find({gender:"Female"}).pretty()
+{
+        "_id" : ObjectId("61af7f8feca739826efa81b9"),
+        "first_name" : "Gena",
+        "last_name" : "Stillwell",
+        "email" : "gstillwella@51.la",
+        "gender" : "Female",
+        "ip_address" : "100.99.65.70",
+        "age" : 11
+}
+{
+        "_id" : ObjectId("61af7f8feca739826efa81c1"),
+        "first_name" : "Manfred",
+        "last_name" : "Aggott",
+        "email" : "maggotti@google.ca",
+        "gender" : "Female",
+        "ip_address" : "116.56.34.67",
+        "age" : 19
+}
+{
+        "_id" : ObjectId("61af7f8feca739826efa81c2"),
+        "first_name" : "Vanda",
+        "last_name" : "Gallyhaock",
+        "email" : "vgallyhaockj@discovery.com",
+        "gender" : "Female",
+        "ip_address" : "87.98.236.173",
+        "age" : 20
+}
+>
+==========================================
+
+> db.users.update({email:"adarrigo0@sun.com"},{$set:{lastName:"tiwari"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+>
+>
+> db.users.find({email:"adarrigo0@sun.com"}).pretty()
+{
+        "_id" : ObjectId("61af7f8feca739826efa81af"),
+        "first_name" : "Abel",
+        "last_name" : "D'Arrigo",
+        "email" : "adarrigo0@sun.com",
+        "gender" : "Agender",
+        "ip_address" : "10.195.89.131",
+        "age" : 1,
+        "lastName" : "tiwari"
+}
+>
+=================================================
+
+}
+> db.users.updateMany({gender:"Female"},{$set:{gender:"xyzzz"}})
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+>
+>
+> db.users.find({gender:"xyzzz"}).pretty()
+{
+        "_id" : ObjectId("61af7f8feca739826efa81b9"),
+        "first_name" : "Gena",
+        "last_name" : "Stillwell",
+        "email" : "gstillwella@51.la",
+        "gender" : "xyzzz",
+        "ip_address" : "100.99.65.70",
+        "age" : 11
+}
+{
+        "_id" : ObjectId("61af7f8feca739826efa81c1"),
+        "first_name" : "Manfred",
+        "last_name" : "Aggott",
+        "email" : "maggotti@google.ca",
+        "gender" : "xyzzz",
+        "ip_address" : "116.56.34.67",
+        "age" : 19
+}
+{
+        "_id" : ObjectId("61af7f8feca739826efa81c2"),
+        "first_name" : "Vanda",
+        "last_name" : "Gallyhaock",
+        "email" : "vgallyhaockj@discovery.com",
+        "gender" : "xyzzz",
+        "ip_address" : "87.98.236.173",
+        "age" : 20
+}
+>==========================================================================
+> db.users.remove({email:"maggotti@google.ca"})
+WriteResult({ "nRemoved" : 1 })
+> db.users.find({gender:"xyzzz"}).pretty()
+{
+        "_id" : ObjectId("61af7f8feca739826efa81b9"),
+        "first_name" : "Gena",
+        "last_name" : "Stillwell",
+        "email" : "gstillwella@51.la",
+        "gender" : "xyzzz",
+        "ip_address" : "100.99.65.70",
+        "age" : 11
+}
+{
+        "_id" : ObjectId("61af7f8feca739826efa81c2"),
+        "first_name" : "Vanda",
+        "last_name" : "Gallyhaock",
+        "email" : "vgallyhaockj@discovery.com",
+        "gender" : "xyzzz",
+        "ip_address" : "87.98.236.173",
+        "age" : 20
+}
+>
+> db.users.deleteOne({email:"vgallyhaockj@discovery.com"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+>
+>  db.users.find({gender:"xyzzz"}).pretty()
+{
+        "_id" : ObjectId("61af7f8feca739826efa81b9"),
+        "first_name" : "Gena",
+        "last_name" : "Stillwell",
+        "email" : "gstillwella@51.la",
+        "gender" : "xyzzz",
+        "ip_address" : "100.99.65.70",
+        "age" : 11
+}
+>
+
+
+=============================================================
+
+>  db.users.deleteMany({gender:"xyzzz"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+>  db.users.find({gender:"xyzzz"}).pretty()
+>
+> db.drop()
+uncaught exception: TypeError: db.drop is not a function :
+@(shell):1:1
+>
+> db.users.drop()
+true
+>
